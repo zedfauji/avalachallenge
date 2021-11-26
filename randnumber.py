@@ -15,7 +15,7 @@ hex_argb_color_code = StringVar()
 
 def random_color():
     for j in range(10):
-        rand_colors = ["#"+''.join([random.choice('ABCDEF0123456789') for i in range(8)])]
+        rand_colors = ["#"+''.join([random.choice('ABCDEF0123456789') for i in range(8)])] # Need to change here , remove hash sign with 0x
         color_list.append(rand_colors)
     colors_list = checkandremoveduplicates(color_list)
     filtered_list = checkforhexspeak(colors_list)
@@ -34,7 +34,7 @@ def checkforhexspeak(color_list):
     req = requests.get('https://gist.githubusercontent.com/gabrielfalcao/c942f6602401f0697c206e30f0aa4bad/raw/768da56222c1ad3439b3a54879a220aaa699855f/hexspeak')
     hexspeak_list = req.text.split("\n")
     for i in range(len(hexspeak_list)):
-        if hexspeak_list[i] in color_list:
+        if hexspeak_list[i] in color_list: #add more .find also for substrings
             color_list.remove(hexspeak_list[i])
     return color_list
 def pushtoQueue(filtered_list):
